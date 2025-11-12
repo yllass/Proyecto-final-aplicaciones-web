@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #121212, #1f1f1f);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #242424;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(126, 87, 194, 0.3);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
+
+h1 {
+  color: #a98ff0;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #333;
+  color: white;
+}
+
+button {
+  background-color: #7e57c2;
+  border: none;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #9c6efc;
+}
+
+a {
+  color: #b39ddb;
+}
+
+#msgBox {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 500;
+  display: none;
+  z-index: 9999;
+}
+
+#msgBox.success {
+  background-color: #7e57c2;
+}
+
+#msgBox.error {
+  background-color: #d32f2f;
+}
+
+#msgBox.info {
+  background-color: #424242;
+}
