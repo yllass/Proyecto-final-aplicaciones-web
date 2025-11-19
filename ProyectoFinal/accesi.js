@@ -19,7 +19,7 @@ async function loginUsuario() {
     if (!res.ok) return msg(data.message || "Credenciales incorrectas");
 
     localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user));
+    localStorage.setItem("user", JSON.stringify(data.userPublicData));
 
     window.location.href = "home.html";
   } catch (err) {
@@ -58,11 +58,16 @@ async function registrarUsuario() {
 
 // PROTECCIÓN HOME
 function verificarHome() {
-  if (!localStorage.getItem("token")) {
-    alert("Sesión expirada. Inicia sesión.");
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+
+  if (!token || !user) {
+    alert("Datos de usuario incompletos. Inicia sesión nuevamente.");
+    localStorage.clear();
     window.location.href = "logindex.html";
   }
 }
+
 
 // LOGOUT
 function cerrarSesion() {
