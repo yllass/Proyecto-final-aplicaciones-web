@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home - Backoffice</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="acceso.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backoffice - Home</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div id="msgBox"></div>
-  <div class="container">
-    <h1>Panel principal</h1>
-    <p>Has iniciado sesión correctamente.</p>
-    <button id="logoutBtn">Cerrar sesión</button>
-  </div>
+<body class="home-body">
+
+    <header class="home-header">
+        <h1>Panel de Proyectos</h1>
+        <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+    </header>
+
+    <main class="home-container">
+        <button id="btnAddProject" class="btn-primary">Agregar Proyecto</button>
+        <section id="project-list" class="project-list"></section>
+    </main>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">Nuevo Proyecto</h2>
+            <label>Nombre del Proyecto:</label>
+            <input type="text" id="projName">
+            <label>Descripción:</label>
+            <textarea id="projDesc"></textarea>
+            <button id="saveProject" class="btn-primary">Guardar</button>
+            <button id="closeModal" class="btn-secondary">Cancelar</button>
+        </div>
+    </div>
+
+    <script src="accesi.js"></script>
 </body>
 </html>

@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - Backoffice</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Backoffice · Login</title>
   <link rel="stylesheet" href="styles.css" />
-  <script src="acceso.js" defer></script>
 </head>
 <body>
-  <div id="msgBox"></div>
-  <div class="container">
-    <h1>Bienvenido</h1>
+  <div class="card">
+    <h2>Iniciar sesión</h2>
+
     <form id="loginForm">
-      <input type="email" id="email" placeholder="Correo electrónico" required />
-      <input type="password" id="password" placeholder="Contraseña" required />
-      <button type="submit">Iniciar sesión</button>
+      <input id="loginEmail" type="email" placeholder="Correo" required />
+      <input id="loginPassword" type="password" placeholder="Contraseña" required />
+      <button type="submit">Entrar</button>
     </form>
-    <p>¿No tienes cuenta? <a href="regis.html">Regístrate aquí</a></p>
+
+    <p>¿No tienes cuenta?  
+      <a href="regis.html">Registrarse</a>
+    </p>
   </div>
+
+  <script src="accesi.js"></script>
 </body>
 </html>

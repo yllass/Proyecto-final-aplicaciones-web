@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Registro - Backoffice</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Registrarse</title>
   <link rel="stylesheet" href="styles.css" />
-  <script src="acceso.js" defer></script>
 </head>
 <body>
-  <div id="msgBox"></div>
-  <div class="container">
-    <h1>Crear cuenta</h1>
+  <div class="card">
+    <h2>Crear cuenta</h2>
+
     <form id="registerForm">
-      <input type="text" id="name" placeholder="Nombre completo" required />
-      <input type="email" id="email" placeholder="Correo electrónico" required />
-      <input type="text" id="itsonId" placeholder="ID ITSON (6 dígitos)" required />
-      <input type="password" id="password" placeholder="Contraseña" required />
-      <button type="submit">Registrarse</button>
+      <input id="registerName" placeholder="Nombre completo" required />
+      <input id="registerEmail" type="email" placeholder="Correo" required />
+      <input id="registerItsonId" placeholder="ID ITSON (6 dígitos)" maxlength="6" required />
+      <input id="registerPassword" type="password" placeholder="Contraseña" required />
+      <button type="submit">Registrar</button>
     </form>
-    <p>¿Ya tienes cuenta? <a href="logindex.html">Inicia sesión</a></p>
+
+    <p>¿Ya tienes cuenta?
+      <a href="logindex.html">Iniciar sesión</a>
+    </p>
   </div>
+
+  <script src="accesi.js"></script>
 </body>
 </html>
