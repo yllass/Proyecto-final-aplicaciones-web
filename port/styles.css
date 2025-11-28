@@ -1,0 +1,135 @@
+/* =======================
+    ESTILO GLOBAL
+======================== */
+body {
+    margin: 0;
+    padding: 0;
+    background: #121212;
+    color: #eee;
+    font-family: 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    color: #d9b3ff;
+}
+
+/* =======================
+    NAVBAR
+======================== */
+nav {
+    background: #1a001f;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 25px #6a0dad55;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav h1 {
+    font-size: 22px;
+    margin: 0;
+}
+
+nav a {
+    color: #c38aff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* =======================
+    SECCIÓN PRINCIPAL
+======================== */
+.hero {
+    padding: 5px 30px;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 28px;
+    color: #e7cbff;
+}
+
+
+/* =======================
+    GRID DE PROYECTOS
+======================== */
+.projects-section {
+    padding: 20px 30px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+/* =======================
+    TARJETAS DE PROYECTO
+======================== */
+.project-card {
+    background: #1a001f;
+    padding: 18px;
+    border-radius: 12px;
+    border: 2px solid #9b4dff;
+    box-shadow: 0 0 18px #6a0dad40;
+    transition: 0.25s;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px #9b4dff88;
+}
+
+.project-image {
+    width: 100%;
+    height: 160px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid #6a0dad;
+}
+
+.project-card h3 {
+    margin-top: 12px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.project-card p {
+    font-size: 14px;
+    color: #d9c4ff;
+}
+
+.project-card a {
+    margin-top: 12px;
+    padding: 8px;
+    background: linear-gradient(90deg, #6a0dad, #9b4dff);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.project-card a:hover {
+    transform: scale(1.03);
+}
+
+/* =======================
+    RESPONSIVE
+======================== */
+@media (max-width: 500px) {
+    nav h1 {
+        font-size: 18px;
+    }
+    .hero h2 {
+        font-size: 22px;
+    }
+}
