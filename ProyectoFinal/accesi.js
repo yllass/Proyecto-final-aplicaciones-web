@@ -28,7 +28,7 @@ async function loginUsuario() {
   }
 }
 
-// REGISTER
+// REGISTRAR
 async function registrarUsuario() {
   const name = document.getElementById("registerName")?.value;
   const email = document.getElementById("registerEmail")?.value;
@@ -68,7 +68,6 @@ function verificarHome() {
   }
 }
 
-
 // LOGOUT
 function cerrarSesion() {
   localStorage.clear();
@@ -85,6 +84,7 @@ async function loadProjects() {
   if (!projectList) return;
 
   const token = localStorage.getItem("token");
+
   try {
     const res = await fetch(`${API_BASE}/projects`, {
       headers: { "auth-token": token }
@@ -96,11 +96,24 @@ async function loadProjects() {
     data.forEach(proj => {
       const card = document.createElement("div");
       card.classList.add("project-card");
+
+      const img = proj.images?.length
+        ? proj.images[0]
+        : "https://via.placeholder.com/300x180?text=Sin+imagen";
+
       card.innerHTML = `
+        <img src="${img}" class="project-image">
         <h3>${proj.title}</h3>
         <p>${proj.description}</p>
-        <button class="btn-edit" onclick="openEdit('${proj._id}', '${proj.title}', '${proj.description}')">Editar</button>
-        <button class="btn-delete" onclick="deleteProject('${proj._id}')">Eliminar</button>
+
+        <button class="btn-edit" 
+          onclick="openEdit('${proj._id}', '${proj.title}', '${proj.description}', '${img}')">
+          Editar
+        </button>
+
+        <button class="btn-delete" onclick="deleteProject('${proj._id}')">
+          Eliminar
+        </button>
       `;
       projectList.appendChild(card);
     });
@@ -117,19 +130,25 @@ if (btnAddProject) {
     document.getElementById("modal-title").innerText = "Nuevo Proyecto";
     document.getElementById("projName").value = "";
     document.getElementById("projDesc").value = "";
+    document.getElementById("projImage").value = "";
     document.getElementById("modal")?.classList.remove("hidden");
   });
 }
 
 // ABRIR MODAL EDITAR
-function openEdit(id, title, desc) {
+function openEdit(id, title, desc, img) {
   editId = id;
+
   const modal = document.getElementById("modal");
   if (!modal) return;
 
   document.getElementById("modal-title").innerText = "Editar Proyecto";
   document.getElementById("projName").value = title;
   document.getElementById("projDesc").value = desc;
+
+  document.getElementById("projImage").value =
+    img.includes("Sin+imagen") ? "" : img;
+
   modal.classList.remove("hidden");
 }
 
@@ -138,21 +157,33 @@ const saveBtn = document.getElementById("saveProject");
 if (saveBtn) {
   saveBtn.addEventListener("click", async () => {
     const token = localStorage.getItem("token");
+
+    const imgUrl = document.getElementById("projImage").value;
+
     const body = {
       title: document.getElementById("projName").value,
-      description: document.getElementById("projDesc").value
+      description: document.getElementById("projDesc").value,
+      images: imgUrl ? [imgUrl] : []
     };
 
     let url = `${API_BASE}/projects`;
     let method = "POST";
-    if (editId) { url = `${API_BASE}/projects/${editId}`; method = "PUT"; }
+
+    if (editId) {
+      url = `${API_BASE}/projects/${editId}`;
+      method = "PUT";
+    }
 
     try {
       await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json", "auth-token": token },
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": token
+        },
         body: JSON.stringify(body)
       });
+
       document.getElementById("modal")?.classList.add("hidden");
       loadProjects();
     } catch (err) {
@@ -165,11 +196,13 @@ if (saveBtn) {
 // ELIMINAR PROYECTO
 async function deleteProject(id) {
   const token = localStorage.getItem("token");
+
   try {
     await fetch(`${API_BASE}/projects/${id}`, {
       method: "DELETE",
       headers: { "auth-token": token }
     });
+
     loadProjects();
   } catch (err) {
     console.error(err);
@@ -192,16 +225,40 @@ if (logoutBtn) logoutBtn.addEventListener("click", cerrarSesion);
 
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname;
+
   if (path.includes("logindex")) {
     const loginForm = document.getElementById("loginForm");
-    if (loginForm) loginForm.onsubmit = e => { e.preventDefault(); loginUsuario(); };
+    if (loginForm) loginForm.onsubmit = e => {
+      e.preventDefault();
+      loginUsuario();
+    };
   }
+
   if (path.includes("regis")) {
     const registerForm = document.getElementById("registerForm");
-    if (registerForm) registerForm.onsubmit = e => { e.preventDefault(); registrarUsuario(); };
+    if (registerForm) registerForm.onsubmit = e => {
+      e.preventDefault();
+      registrarUsuario();
+    };
   }
+
   if (path.includes("home.html")) {
     verificarHome();
     loadProjects();
   }
+
+  document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("btn-toggle")) {
+        const desc = e.target.previousElementSibling;
+
+        desc.classList.toggle("expanded");
+
+        if (desc.classList.contains("expanded")) {
+            e.target.textContent = "Ver menos";
+        } else {
+            e.target.textContent = "Ver más";
+        }
+    }
+});
+
 });
