@@ -1,6 +1,5 @@
 const API_URL = "https://portfolio-api-three-black.vercel.app/api/v1";
 
-// 🔥 CAMBIA ESTE ITSOn ID AL TUYO
 const itsonId = "251925";
 
 document.addEventListener("DOMContentLoaded", cargarProyectos);
